@@ -1,17 +1,19 @@
 package id.putraprima.retrofit.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import id.putraprima.retrofit.R;
 import id.putraprima.retrofit.api.helper.ServiceGenerator;
 import id.putraprima.retrofit.api.models.Envelope;
-import id.putraprima.retrofit.api.models.LoginResponse;
 import id.putraprima.retrofit.api.models.UserInfo;
 import id.putraprima.retrofit.api.services.ApiInterface;
 import retrofit2.Call;
@@ -20,11 +22,15 @@ import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
     public Context context;
-
+    TextView tvName,tvEmail, tvId;
+    String sName,sEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        tvId   = findViewById(R.id.idUser);
+        tvName = findViewById(R.id.Name);
+        tvEmail = findViewById(R.id.Email);
         context = getApplicationContext();
         getMe();
 
@@ -38,7 +44,11 @@ public class ProfileActivity extends AppCompatActivity {
         call.enqueue(new Callback<Envelope<UserInfo>>() {
             @Override
             public void onResponse(Call<Envelope<UserInfo>> call, Response<Envelope<UserInfo>> response) {
-                Toast.makeText(ProfileActivity.this, response.body().getData().getEmail(), Toast.LENGTH_SHORT).show();
+//      Toast.makeText(ProfileActivity.this, response.body().getData().getEmail(), Toast.LENGTH_SHORT).show();
+//            tvId.setText(response.body().getData().getId());
+            tvEmail.setText(response.body().getData().getEmail());
+            tvName.setText(response.body().getData().getName());
+
             }
 
             @Override
@@ -46,5 +56,15 @@ public class ProfileActivity extends AppCompatActivity {
                 Toast.makeText(ProfileActivity.this, "Error Request", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void handleUpdateProfile(View view) {
+        Intent intent = new Intent(this, UpdateProfile.class);
+        startActivity(intent);
+    }
+
+    public void handleUpdatePassword(View view) {
+        Intent intent = new Intent(this, UpdatePassword.class);
+        startActivity(intent);
     }
 }
