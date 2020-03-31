@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-public class Session {
+public class DataKey {
 
     private static final String DATA_KEY_APP = "data_app";
     private static final String DATA_KEY_VERSION = "data_version";
@@ -14,7 +14,7 @@ public class Session {
 
     private SharedPreferences preferences;
 
-    public Session(Context context) {
+    public DataKey(Context context) {
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 

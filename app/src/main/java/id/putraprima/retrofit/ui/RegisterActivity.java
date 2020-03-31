@@ -8,9 +8,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import id.putraprima.retrofit.R;
 import id.putraprima.retrofit.api.helper.ServiceGenerator;
+import id.putraprima.retrofit.api.models.API_Error;
 import id.putraprima.retrofit.api.models.Envelope;
+import id.putraprima.retrofit.api.models.ErrorResponse;
 import id.putraprima.retrofit.api.models.RegisterRequest;
 import id.putraprima.retrofit.api.models.RegisterResponse;
 import id.putraprima.retrofit.api.services.ApiInterface;
@@ -43,13 +47,13 @@ public class RegisterActivity extends AppCompatActivity {
                 String pass_con = conPassInput.getText().toString();
 
                 registerRequest = new RegisterRequest(name,email,pass,pass_con);
-
-                boolean validate = !name.isEmpty() && !email.isEmpty() && !pass.isEmpty() && !pass_con.isEmpty() && pass.equals(pass_con) && pass.length()>=8;
-                if(validate){
-                    register();                }
-                else{
-                    Toast.makeText(RegisterActivity.this, "isi coy", Toast.LENGTH_SHORT).show();
-                }
+                register();
+//                boolean validate = !name.isEmpty() && !email.isEmpty() && !pass.isEmpty() && !pass_con.isEmpty() && pass.equals(pass_con) && pass.length()>=8;
+//                if(validate){
+//                    register();                }
+//                else{
+//                    Toast.makeText(RegisterActivity.this, "isi data terlebih dahulu", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
     }
@@ -60,15 +64,36 @@ public class RegisterActivity extends AppCompatActivity {
         call.enqueue(new Callback<Envelope<RegisterResponse>>() {
             @Override
             public void onResponse(Call<Envelope<RegisterResponse>> call, Response<Envelope<RegisterResponse>> response) {
-                if(response.code() == 302){
-                    Toast.makeText(RegisterActivity.this, "Failed, Duplicate User", Toast.LENGTH_SHORT).show();
-                }
-                else if(response.code()==201){
+                if(response.code() == 201){
                     Toast.makeText(RegisterActivity.this, response.body().getData().getName(),Toast.LENGTH_SHORT).show();
                     Toast.makeText(RegisterActivity.this, response.body().getData().getEmail(),Toast.LENGTH_SHORT).show();
-                    Toast.makeText(RegisterActivity.this, "Register Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Register Berhasil", Toast.LENGTH_SHORT).show();
 
                 }
+                else if(response.code()==302){
+                    API_Error error = ErrorResponse.parseError(response);
+                    if (namaInput.length() == 0){
+                        int i = 0;
+                        while (i < error.getError().getName().size()){
+                            Toast.makeText(RegisterActivity.this, error.getError().getName().get(i), Toast.LENGTH_SHORT).show();
+                            i++;
+                        }
+                    }else if (error.getError().getEmail() != null){
+                        int i = 0;
+                        while (i < error.getError().getEmail().size()){
+                            Toast.makeText(RegisterActivity.this,error.getError().getEmail().get(i), Toast.LENGTH_SHORT).show();
+                            i++;
+                        }
+                    }else{
+                        int i = 0;
+                        while (i < error.getError().getPassword().size()){
+                            Toast.makeText(RegisterActivity.this, error.getError().getPassword().get(i),  Toast.LENGTH_SHORT).show();
+
+                            i++;
+                        }
+                    }
+                }
+
             }
 
             @Override
@@ -79,41 +104,5 @@ public class RegisterActivity extends AppCompatActivity {
         });
         }
 
-//    public void handlerRegisterProcess(View view) {
-//        String name = namaInput.getText().toString();
-//        String email= emailInput.getText().toString();
-//        String pass = passwordInput.getText().toString();
-//        String pass_con = conPassInput.getText().toString();
-//        registerRequest = new RegisterRequest(name, email, pass, pass_con);
-//
-//        boolean check;
-//        if (name.equals("")) {
-//            Toast.makeText(this, "Name is Empty!", Toast.LENGTH_SHORT).show();
-//            check = false;
-//        } else if(email.equals("")) {
-//            Toast.makeText(this, "Email is Empty!", Toast.LENGTH_SHORT).show();
-//            check = false;
-//        } else if (pass.equals("")) {
-//            Toast.makeText(this, "Password is Empty!", Toast.LENGTH_SHORT).show();
-//            check = false;
-//        } else if (pass.equals("")) {
-//            Toast.makeText(this, "Password Confirmation is Empty!", Toast.LENGTH_SHORT).show();
-//            check = false;
-//        } else if (pass.length() < 8) {
-//            Toast.makeText(this, "Password limit 8", Toast.LENGTH_SHORT).show();
-//            check = false;
-//        } else if (!pass_con.equals(pass)) {
-//            Toast.makeText(this, "Confirm Password not Same!", Toast.LENGTH_SHORT).show();
-//            check = false;
-//        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-//            Toast.makeText(this, "Email Not Valid", Toast.LENGTH_SHORT).show();
-//            check = false;
-//        } else {
-//            check = true;
-//        }
-//
-//        if (check == true) {
-//            register();
-//        }
-//    }
+
 }

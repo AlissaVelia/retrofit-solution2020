@@ -20,23 +20,6 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
 public interface ApiInterface{
-//    @GET("/")
-//    Call<AppVersion> getAppVersion();
-//
-//    @POST("/api/auth/login")
-//    Call<LoginResponse> doLogin(@Body LoginRequest loginRequest);
-//
-//    @POST("/api/auth/register")
-//    Call<Envelope<RegisterResponse>> doRegister(@Body RegisterRequest registerRequest);
-//
-//    @PATCH("/api/account/profile")
-//    Call<Envelope<UpdateProfileResponse>> doUpdateProfile(@Body UpdateProfileRequest updateProfileRequest);
-//
-//    @PATCH("/api/account/password")
-//    Call<Envelope<UpdatePasswordResponse>> doUpdatePassword(@Body UpdatePasswordRequest updatePasswordRequest);
-//
-//    @GET("/api/auth/me")
-//    Call<Envelope<UserInfo>> me();
 
     @GET("/")
     Call<AppVersion> getAppVersion();

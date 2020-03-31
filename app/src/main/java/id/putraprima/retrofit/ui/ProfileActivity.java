@@ -38,14 +38,13 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void getMe() {
         SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(context);
-        Toast.makeText(context, preference.getString("token",null), Toast.LENGTH_SHORT).show();
+
         ApiInterface service = ServiceGenerator.createService(ApiInterface.class, "Bearer "+preference.getString("token",null));
         Call<Envelope<UserInfo>> call = service.me();
         call.enqueue(new Callback<Envelope<UserInfo>>() {
             @Override
             public void onResponse(Call<Envelope<UserInfo>> call, Response<Envelope<UserInfo>> response) {
-//      Toast.makeText(ProfileActivity.this, response.body().getData().getEmail(), Toast.LENGTH_SHORT).show();
-//            tvId.setText(response.body().getData().getId());
+
             tvEmail.setText(response.body().getData().getEmail());
             tvName.setText(response.body().getData().getName());
 

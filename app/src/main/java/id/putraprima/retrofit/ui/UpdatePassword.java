@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import id.putraprima.retrofit.R;
 import id.putraprima.retrofit.api.helper.ServiceGenerator;
-import id.putraprima.retrofit.api.models.Session;
+import id.putraprima.retrofit.api.models.DataKey;
 import id.putraprima.retrofit.api.models.UpdatePasswordRequest;
 import id.putraprima.retrofit.api.models.UpdatePasswordResponse;
 import id.putraprima.retrofit.api.services.ApiInterface;
@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class UpdatePassword extends AppCompatActivity {
     private EditText passInput,cpassInput;
-    private Session session;
+    private DataKey dataKey;
     private String pass,cpass,token;
 
     @Override
@@ -29,8 +29,8 @@ public class UpdatePassword extends AppCompatActivity {
         setContentView(R.layout.activity_update_password);
         passInput = findViewById(R.id.newpasswordInput);
         cpassInput = findViewById(R.id.newcpasswordInput);
-        session = new Session(this);
-        token = session.getTokenType() + " " + session.getToken();
+        dataKey = new DataKey(this);
+        token = dataKey.getTokenType() + " " + dataKey.getToken();
     }
 
     public void handleSubmitPass(View view){

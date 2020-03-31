@@ -17,6 +17,9 @@ public class ServiceGenerator {
                     .addConverterFactory(GsonConverterFactory.create());
 
     private static Retrofit retrofit = builder.build();
+    public static Retrofit retrofit(){
+        return retrofit;
+    }
 
     private static HttpLoggingInterceptor logging =
             new HttpLoggingInterceptor()
