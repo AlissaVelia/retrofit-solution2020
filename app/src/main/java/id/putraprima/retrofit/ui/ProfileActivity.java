@@ -52,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Envelope<UserInfo>> call, Throwable t) {
-                Toast.makeText(ProfileActivity.this, "Error Request", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, "Gagal Koneksi Server", Toast.LENGTH_SHORT).show();
             }
         });
     }

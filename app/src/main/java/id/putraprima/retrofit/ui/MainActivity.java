@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import id.putraprima.retrofit.R;
 import id.putraprima.retrofit.api.helper.ServiceGenerator;
 import id.putraprima.retrofit.api.models.API_Error;
-import id.putraprima.retrofit.api.models.ErrorResponse;
+import id.putraprima.retrofit.api.models.ErrorUtils;
 import id.putraprima.retrofit.api.models.LoginRequest;
 import id.putraprima.retrofit.api.models.LoginResponse;
 import id.putraprima.retrofit.api.services.ApiInterface;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.code() == 302) {
-                    API_Error error = ErrorResponse.parseError(response);
+                    API_Error error = ErrorUtils.parseError(response);
 
                     if (email.length() == 0) {
                         Toast.makeText(MainActivity.this, error.getError().getEmail().get(0), Toast.LENGTH_SHORT).show();
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Gagal Koneksi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Gagal Koneksi ke Server", Toast.LENGTH_SHORT).show();
             }
         });
     }

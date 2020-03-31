@@ -8,13 +8,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import id.putraprima.retrofit.R;
 import id.putraprima.retrofit.api.helper.ServiceGenerator;
 import id.putraprima.retrofit.api.models.API_Error;
 import id.putraprima.retrofit.api.models.Envelope;
-import id.putraprima.retrofit.api.models.ErrorResponse;
+import id.putraprima.retrofit.api.models.ErrorUtils;
 import id.putraprima.retrofit.api.models.RegisterRequest;
 import id.putraprima.retrofit.api.models.RegisterResponse;
 import id.putraprima.retrofit.api.services.ApiInterface;
@@ -71,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 }
                 else if(response.code()==302){
-                    API_Error error = ErrorResponse.parseError(response);
+                    API_Error error = ErrorUtils.parseError(response);
                     if (namaInput.length() == 0){
                         int i = 0;
                         while (i < error.getError().getName().size()){

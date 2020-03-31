@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import id.putraprima.retrofit.R;
 import id.putraprima.retrofit.api.helper.ServiceGenerator;
 import id.putraprima.retrofit.api.models.API_Error;
-import id.putraprima.retrofit.api.models.ErrorResponse;
+import id.putraprima.retrofit.api.models.ErrorUtils;
 import id.putraprima.retrofit.api.models.DataKey;
 import id.putraprima.retrofit.api.models.UpdateProfileRequest;
 import id.putraprima.retrofit.api.models.UpdateProfileResponse;
@@ -55,11 +55,11 @@ public class UpdateProfile extends AppCompatActivity {
             @Override
             public void onResponse(Call<UpdateProfileResponse> call, Response<UpdateProfileResponse> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(UpdateProfile.this,"Profile has been updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateProfile.this,"Profile berhasil di update", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(UpdateProfile.this, ProfileActivity.class);
                     startActivity(i);
                 }else{
-                    API_Error error = ErrorResponse.parseError(response);
+                    API_Error error = ErrorUtils.parseError(response);
                     if(name.length() == 0){
                         int i = 0;
                         while (i < error.getError().getName().size()){
@@ -81,7 +81,7 @@ public class UpdateProfile extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UpdateProfileResponse> call, Throwable t) {
-                Toast.makeText(UpdateProfile.this, "Data gagal", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UpdateProfile.this, "Gagal Koneksi ke Server", Toast.LENGTH_SHORT).show();
             }
         });
 
