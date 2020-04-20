@@ -1,14 +1,8 @@
 package id.putraprima.retrofit.api.models;
 
-public class UpdatePasswordResponse {
-    public int id;
-    public String name,email;
-
-    public UpdatePasswordResponse(int id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
+public class ProfileResponse {
+    int id;
+    String name, email;
 
     public int getId() {
         return id;

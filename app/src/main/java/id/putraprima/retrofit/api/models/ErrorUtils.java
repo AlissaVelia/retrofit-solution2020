@@ -10,17 +10,17 @@ import retrofit2.Response;
 
 public class ErrorUtils {
 
-    public static API_Error parseError(Response<?> response) {
-        Converter<ResponseBody, API_Error> converter =
+    public static ApiError parseError(Response<?> response) {
+        Converter<ResponseBody, ApiError> converter =
                 ServiceGenerator.retrofit()
-                        .responseBodyConverter(API_Error.class, new Annotation[0]);
+                        .responseBodyConverter(ApiError.class, new Annotation[0]);
 
-        API_Error error;
+        ApiError error;
 
         try {
             error = converter.convert(response.errorBody());
         } catch (IOException e) {
-            return new API_Error();
+            return new ApiError();
         }
 
         return error;

@@ -1,14 +1,14 @@
 package id.putraprima.retrofit.api.models;
 
-public class Envelope<T> {
+public class Data<T> {
     Links links;
     Meta meta;
     T data;
 
-    public Envelope() {
+    public Data() {
     }
 
-    public Envelope(Links links, Meta meta, T data) {
+    public Data(Links links, Meta meta, T data) {
         this.links = links;
         this.meta = meta;
         this.data = data;

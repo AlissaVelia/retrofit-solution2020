@@ -3,8 +3,7 @@ package id.putraprima.retrofit.api.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class API_Error {
-
+public class ApiError {
     @SerializedName("error")
     @Expose
     private Error error;

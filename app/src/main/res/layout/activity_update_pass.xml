@@ -11,36 +11,37 @@
         android:id="@+id/bntToRegister"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:onClick="handleUpdate"
         android:text="Update"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="handleUpdate"/>
+
+
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="75dp"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/edtPasswordConfirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/edtUsername"
+        android:id="@+id/edtPasswordConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:height="75dp"
         android:ems="10"
-        android:hint="username"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/edtEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/edtEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:height="75dp"
-        android:ems="10"
-        android:hint="email"
-        android:inputType="textEmailAddress"
+        android:hint="password confirmation"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/bntToRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

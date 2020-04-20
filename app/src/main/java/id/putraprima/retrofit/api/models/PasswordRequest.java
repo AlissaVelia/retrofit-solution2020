@@ -1,9 +1,9 @@
 package id.putraprima.retrofit.api.models;
 
-public class UpdatePasswordRequest {
-    public String password,password_confirmation;
+public class PasswordRequest {
+    String password, password_confirmation;
 
-    public UpdatePasswordRequest(String password, String password_confirmation) {
+    public PasswordRequest(String password, String password_confirmation) {
         this.password = password;
         this.password_confirmation = password_confirmation;
     }

@@ -1,8 +1,8 @@
 package id.putraprima.retrofit.api.models;
 
 public class UserInfo {
-    public int id;
-    public String name,email;
+    int id;
+    String name, email;
 
     public UserInfo(int id, String name, String email) {
         this.id = id;

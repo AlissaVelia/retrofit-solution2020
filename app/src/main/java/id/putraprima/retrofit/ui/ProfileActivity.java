@@ -1,19 +1,18 @@
 package id.putraprima.retrofit.ui;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import id.putraprima.retrofit.R;
 import id.putraprima.retrofit.api.helper.ServiceGenerator;
-import id.putraprima.retrofit.api.models.Envelope;
+import id.putraprima.retrofit.api.models.Data;
 import id.putraprima.retrofit.api.models.UserInfo;
 import id.putraprima.retrofit.api.services.ApiInterface;
 import retrofit2.Call;
@@ -21,49 +20,65 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
-    public Context context;
-    TextView tvName,tvEmail, tvId;
-    String sName,sEmail;
+    TextView txtEmail, txtName;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        tvId   = findViewById(R.id.idUser);
-        tvName = findViewById(R.id.Name);
-        tvEmail = findViewById(R.id.Email);
         context = getApplicationContext();
+        txtEmail = findViewById(R.id.txtEmail);
+        txtName = findViewById(R.id.txtName);
         getMe();
-
     }
 
-    private void getMe() {
-        SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(context);
-
-        ApiInterface service = ServiceGenerator.createService(ApiInterface.class, "Bearer "+preference.getString("token",null));
-        Call<Envelope<UserInfo>> call = service.me();
-        call.enqueue(new Callback<Envelope<UserInfo>>() {
+    public static String token;
+    public static final String SHARED_PREFS = "sharedPrefs";
+    private void getMe(){
+        SharedPreferences preferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        ApiInterface service = ServiceGenerator.createService(ApiInterface.class);
+        Call<Data<UserInfo>> call = service.doMe("Bearer" + preferences.getString(token,""));
+        call.enqueue(new Callback<Data<UserInfo>>() {
             @Override
-            public void onResponse(Call<Envelope<UserInfo>> call, Response<Envelope<UserInfo>> response) {
-
-            tvEmail.setText(response.body().getData().getEmail());
-            tvName.setText(response.body().getData().getName());
-
+            public void onResponse(Call<Data<UserInfo>> call, Response<Data<UserInfo>> response) {
+                Data<UserInfo> info = response.body();
+                Toast.makeText(ProfileActivity.this, info.getData().getEmail(), Toast.LENGTH_SHORT).show();
+                txtEmail.setText(info.getData().getEmail());
+                txtEmail.setVisibility(View.VISIBLE);
+                txtName.setText(info.getData().getName());
+                txtName.setVisibility(View.VISIBLE);
             }
 
             @Override
-            public void onFailure(Call<Envelope<UserInfo>> call, Throwable t) {
-                Toast.makeText(ProfileActivity.this, "Gagal Koneksi Server", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Data<UserInfo>> call, Throwable t) {
+
             }
         });
+
     }
 
-    public void handleUpdateProfile(View view) {
-        Intent intent = new Intent(this, UpdateProfile.class);
+    public void handleUpdate(View view) {
+        Intent i = new Intent(ProfileActivity.this, UpdateProfile.class);
+        startActivity(i);
+    }
+
+    public void handleLogout(View view) {
+        Intent i = new Intent(ProfileActivity.this, MainActivity.class);
+        startActivity(i);
+    }
+
+    public void handleUpdatePass(View view) {
+        Intent i = new Intent(ProfileActivity.this, UpdatePass.class);
+        startActivity(i);
+    }
+
+    public void handleResep(View view) {
+        Intent intent = new Intent(this, ResepActivity.class);
         startActivity(intent);
     }
 
-    public void handleUpdatePassword(View view) {
-        Intent intent = new Intent(this, UpdatePassword.class);
+    public void handleAddResep(View view) {
+        Intent intent = new Intent(this, TambahActivity.class);
         startActivity(intent);
     }
 }

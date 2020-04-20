@@ -13,44 +13,45 @@
         android:layout_height="75dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
-        android:onClick="handleLoginClick"
         android:text="Login"
         app:layout_constraintBottom_toTopOf="@+id/bntToRegister"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="handleLogin"/>
 
     <Button
         android:id="@+id/bntToRegister"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:text="Register"
-        android:onClick="handleRegisterClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="moveRegisterActivity"/>
 
     <EditText
-        android:id="@+id/edtEmail"
+        android:id="@+id/mainEdtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:height="75dp"
         android:ems="10"
         android:hint="email"
+        android:text="alissave@app.id"
         android:inputType="textEmailAddress"
-        android:text="admin@app.id"
-        app:layout_constraintBottom_toTopOf="@+id/edtPassword"
+        app:layout_constraintBottom_toTopOf="@+id/mainEdtPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/edtPassword"
+        android:id="@+id/mainEdtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:height="75dp"
         android:ems="10"
         android:hint="password"
-        android:inputType="textPassword"
         android:text="12345678"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -60,21 +61,21 @@
         style="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/edtEmail"
+        app:layout_constraintBottom_toTopOf="@+id/mainTxtAppVersion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/mainTxtAppVersion"
         style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="80dp"
         android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/mainEdtEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainTxtAppName" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

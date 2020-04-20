@@ -4,67 +4,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     tools:context=".ui.ProfileActivity">
 
     <TextView
-        android:id="@+id/idUser"
-        style="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
+        android:id="@+id/txtEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="204dp"
-        android:text="TextView"
-        android:textSize="10pt"
+        android:layout_marginTop="144dp"
+        android:text="textEmail"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/Name"
-        style="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
+        android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
-        android:textSize="10pt"
-        android:text="TextView"
+        android:layout_marginTop="12dp"
+        android:text="textName"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/Email"
-        style="@style/TextAppearance.AppCompat.Body2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="TextView"
-        android:textSize="10pt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Name" />
-
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnPassword"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:onClick="handleUpdateProfile"
+        android:onClick="handleUpdatePass"
+        android:text="Update Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnTambahResep"
+        tools:layout_editor_absoluteY="517dp" />
+
+    <Button
+        android:id="@+id/btnProfile"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:onClick="handleUpdate"
         android:text="Update Profile"
-        app:layout_constraintBottom_toTopOf="@+id/bntToRegister"
+        app:layout_constraintBottom_toTopOf="@+id/btnPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/bntToRegister"
+        android:id="@+id/btnTambahResep"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:text="Update Password"
-        android:onClick="handleUpdatePassword"
+        android:onClick="handleAddResep"
+        android:text="TAMBAH RESEP"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/bntToRegister" />
+
+    <Button
+        android:id="@+id/btnLoad2"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginBottom="224dp"
+        android:onClick="handleResep"
+        android:text="LIHAT RESEP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <!--    <Button-->
+<!--        android:id="@+id/btnTambah"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="75dp"-->
+<!--        android:layout_marginBottom="236dp"-->
+<!--         android:onClick="handleLogout"-->
+<!--        android:text="TAMBAH RESEP"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
