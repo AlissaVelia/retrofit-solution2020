@@ -20,6 +20,20 @@
         android:onClick="handleLogin"/>
 
     <Button
+        android:id="@+id/btnLoad"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="440dp"
+        android:onClick="handleLogin"
+        android:text="LOAD WITH ADS"
+        app:layout_constraintBottom_toTopOf="@+id/bntToRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/bntToRegister"
         android:layout_width="match_parent"
         android:layout_height="75dp"

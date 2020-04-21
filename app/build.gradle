@@ -47,4 +47,13 @@ dependencies {
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    //startapp
+    implementation 'com.startapp:inapp-sdk:3.10.1'
+    //admobs
+    implementation 'com.google.android.gms:play-services-ads:19.1.0'
+    //Privacy n Policy
+    implementation 'com.github.khirr:Android-Privacy-Policy:1.0.2'
+    //dexter
+    implementation 'com.karumi:dexter:4.2.0'
+
 }
